@@ -5,14 +5,26 @@
   "author": "<14878694+ed42311@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon index.ts",
-    "build": "tsc --project ./"
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "env $(cat .env.development) ts-node-dev -P tsconfig.build.json --transpile-only --no-notify src",
+    "lint": "eslint \"**/*.+(js|ts)\"",
+    "lint:ci": "eslint \"**/*.+(js|ts)\" --quiet --fix",
+    "format": "prettier --write \"**/*.+(js|json|ts|md)\" --ignore-path .gitignore",
+    "format:ci": "prettier --check ."
   },
   "devDependencies": {
     "@types/node": "^16.3.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2",
     "ts-node": "^10.1.0",
+    "ts-node-dev": "^1.1.8",
     "typescript": "^4.3.5"
   },
   "dependencies": {
